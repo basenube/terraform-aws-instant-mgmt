@@ -8,7 +8,7 @@ provider "aws" {
 
 // Include the basenube VPC Module
 module "aws-instant-mgmt" {
-  source = "../"
+  source = "github.com/basenube/terraform-aws-instant-mgmt"
   basenube_key = "basenube"
 }
 
