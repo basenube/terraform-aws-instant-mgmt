@@ -1,7 +1,7 @@
 
 // Guard Duty Events, Only Medium and High Events
 resource "aws_cloudwatch_event_rule" "cloudwatchrule" {
-  name = "${lower(var.isc_key)}-cloudwatchrule-guardduty"
+  name = "${lower(var.basenube_key)}-cloudwatchrule-guardduty"
 
   event_pattern = <<PATTERN
   {
@@ -20,12 +20,12 @@ resource "aws_cloudwatch_event_rule" "cloudwatchrule" {
 
 resource "aws_cloudwatch_event_target" "cloudwatchtarget" {
   rule      = "${aws_cloudwatch_event_rule.cloudwatchrule.name}"
-  target_id = "${lower(var.isc_key)}-target-guardduty"
+  target_id = "${lower(var.basenube_key)}-target-guardduty"
   arn       = "${aws_sns_topic.sns-guardduty.arn}"
 }
 
 resource "aws_sns_topic" "sns-guardduty" {
-  name = "${lower(var.isc_key)}-sns-guardduty-topic"
+  name = "${lower(var.basenube_key)}-sns-guardduty-topic"
   provisioner "local-exec" {
     command = "aws sns subscribe --topic-arn ${self.arn} --protocol email --notification-endpoint graeme.durkee@intersystems.com"
   }
@@ -38,7 +38,7 @@ resource "aws_sns_topic" "sns-guardduty" {
 // AWS Config Cloudwatch Events to a bucket
 
 resource "aws_cloudwatch_event_rule" "cloudwatchruleconfig" {
-  name = "${lower(var.isc_key)}-cloudwatchrule-config"
+  name = "${lower(var.basenube_key)}-cloudwatchrule-config"
 
   event_pattern = <<PATTERN
  
@@ -61,15 +61,15 @@ resource "aws_cloudwatch_event_rule" "cloudwatchruleconfig" {
 
 resource "aws_cloudwatch_event_target" "cloudwatchtargetconfig" {
   rule      = "${aws_cloudwatch_event_rule.cloudwatchruleconfig.name}"
-  target_id = "${lower(var.isc_key)}-target-config"
+  target_id = "${lower(var.basenube_key)}-target-config"
   arn       = "${aws_sns_topic.sns-config.arn}"
 }
 
 resource "aws_sns_topic" "sns-config" {
-  name = "${lower(var.isc_key)}-sns-config-topic"
+  name = "${lower(var.basenube_key)}-sns-config-topic"
 
   provisioner "local-exec" {
-    command = "aws sns subscribe --topic-arn ${self.arn} --protocol email --notification-endpoint graeme.durkee@intersystems.com"
+    command = "aws sns subscribe --topic-arn ${self.arn} --protocol email --notification-endpoint ron@basenube.com"
   }
     provisioner "local-exec" {
     command = "aws sns subscribe --topic-arn ${self.arn} --protocol email --notification-endpoint ron@basenube.com"
@@ -79,7 +79,7 @@ resource "aws_sns_topic" "sns-config" {
 
 // EC2 Events
 resource "aws_cloudwatch_event_rule" "cloudwatchruleec2" {
-  name = "${lower(var.isc_key)}-cloudwatchrule-ec2"
+  name = "${lower(var.basenube_key)}-cloudwatchrule-ec2"
 
   event_pattern = <<PATTERN
 
@@ -97,6 +97,6 @@ resource "aws_cloudwatch_event_rule" "cloudwatchruleec2" {
 
 resource "aws_cloudwatch_event_target" "cloudwatchtargetec2" {
   rule      = "${aws_cloudwatch_event_rule.cloudwatchruleec2.name}"
-  target_id = "${lower(var.isc_key)}-target-config"
+  target_id = "${lower(var.basenube_key)}-target-config"
   arn       = "${aws_sns_topic.sns-config.arn}"
 }

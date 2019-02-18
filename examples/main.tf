@@ -6,9 +6,9 @@ provider "aws" {
   region = "${var.aws_region}"
 }
 
-// Include the ISC VPC Module
-module "isc-mgmt" {
+// Include the basenube VPC Module
+module "aws-instant-mgmt" {
   source = "../"
-  isc_key = "ISCRON"
+  basenube_key = "basenube"
 }
 

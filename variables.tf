@@ -1,10 +1,9 @@
-variable "isc_key" {
+variable "basenube_key" {
   description = "This is the stack identifier through out the resources created."
-  // default = "ISC"
+  // default = "basenube"
 }
 
 variable "aws_region" {
-  description = "Region for the ISC VPC"
   default = "us-east-1"
 }
 
@@ -13,15 +12,14 @@ variable "tags" {
   type        = "map"
 
   default = {
-    Backup = "true"
-    TerraformDeveloper  = "Graeme Durkee"
-    Department = "Tech Services"
+    TerraformDeveloper  = "Ron Sweeney"
+    Department = "Full Stack Architecture"
   }
 }
 
 variable "emails" {
   type = "list"
-  default = ["ron@basenube.com", "Graeme.Durkee@intersystems.com"]
+  default = ["ron@basenube.com", "ron@provider.share"]
 }
 
 

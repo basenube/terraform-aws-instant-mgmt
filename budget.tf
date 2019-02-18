@@ -21,10 +21,10 @@ resource "aws_cloudwatch_metric_alarm" "account-billing-alarm" {
 }
 
 resource "aws_sns_topic" "sns-budget" {
-  name = "${lower(var.isc_key)}-sns-budget-topic"
+  name = "${lower(var.basenube_key)}-sns-budget-topic"
 
   provisioner "local-exec" {
-    command = "aws sns subscribe --topic-arn ${self.arn} --protocol email --notification-endpoint graeme.durkee@intersystems.com"
+    command = "aws sns subscribe --topic-arn ${self.arn} --protocol email --notification-endpoint ron@basenube.com"
   }
     provisioner "local-exec" {
     command = "aws sns subscribe --topic-arn ${self.arn} --protocol email --notification-endpoint ron@basenube.com"
