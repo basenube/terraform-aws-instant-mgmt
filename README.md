@@ -11,10 +11,10 @@ A Terraform module that gives you instant visibility to your account with alerti
 
   This plan includes the creation of the following AWS Resources:
 
-  -- Cloudwatch Event Rules: 3
-  -- Cloudwatch Event Targets: 3  
+  -- Cloudwatch Event Rules: 3  
+  -- Cloudwatch Event Targets: 3   
   -- SNS Topics: 4  
-  -- Cloudwatch Metric Alarm: 1 
+  -- Cloudwatch Metric Alarm: 1  
 
 ## Usage
 
