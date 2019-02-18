@@ -16,6 +16,9 @@ A Terraform module that gives you instant visibility to your account with alerti
   -- SNS Topics: 4  
   -- Cloudwatch Metric Alarm: 1  
 
+> Please note:  
+> I used local-execs to subscribe to the topics as Terraform does not have the ability to do this as far as I can tell.
+
 ## Usage
 
 ```bash
